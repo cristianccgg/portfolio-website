@@ -9,7 +9,7 @@ const About = () => {
 
       <img
         className="max-w-3xl w-full mb-6 rounded-lg shadow-md"
-        src="public/images/Gravity I/Menos calidd/IMG_4666.jpg"
+        src="public/images/Gravity_I/Menoscalidd/IMG_4666.jpg"
         alt="Gravity I artwork"
       />
 
