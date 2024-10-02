@@ -4,8 +4,13 @@ import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
+
   const showNavbar = () => {
     setNavbar(!navbar);
+  };
+
+  const handleLinkClick = () => {
+    setNavbar(false); // Cierra el navbar al seleccionar un enlace
   };
 
   return (
@@ -28,13 +33,25 @@ const Navbar = () => {
           navbar ? "block" : "hidden"
         }`}
       >
-        <Link to="/" className="block hover:text-teal-400">
+        <Link
+          to="/"
+          className="block hover:text-teal-400"
+          onClick={handleLinkClick}
+        >
           Home
         </Link>
-        <Link to="/about" className="block hover:text-teal-400">
+        <Link
+          to="/about"
+          className="block hover:text-teal-400"
+          onClick={handleLinkClick}
+        >
           About
         </Link>
-        <Link to="/commissions" className="block hover:text-teal-400">
+        <Link
+          to="/commissions"
+          className="block hover:text-teal-400"
+          onClick={handleLinkClick}
+        >
           Commissions
         </Link>
       </div>
