@@ -8,21 +8,23 @@ const PurchaseForm = ({ artwork }) => {
   const [buyerCity, setBuyerCity] = useState("");
   const [buyerCountry, setBuyerCountry] = useState("");
   const [buyerPostalCode, setBuyerPostalCode] = useState("");
-  const [buyerMessage, setBuyerMessage] = useState(""); // Estado para el mensaje adicional
+  const [buyerMessage, setBuyerMessage] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [isFormVisible, setFormVisible] = useState(false);
-  const [isMessageSent, setMessageSent] = useState(false); // Estado para el mensaje de confirmación
+  const [isMessageSent, setMessageSent] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const message = `Interés en comprar: ${artwork.title}.\nNombre: ${buyerName}\nEmail: ${buyerEmail}\nDirección: ${buyerAddress}\nCiudad: ${buyerCity}\nPaís: ${buyerCountry}\nCódigo Postal: ${buyerPostalCode}\nCantidad: ${quantity}\nMensaje: ${buyerMessage}`; // Incluir el mensaje adicional
-
     const templateParams = {
       from_name: buyerName,
-      to_name: "Cristian Gutierrez",
       from_email: buyerEmail,
-      message: message,
+      address: buyerAddress,
+      city: buyerCity,
+      country: buyerCountry,
+      zip_code: buyerPostalCode,
+      message: buyerMessage,
+      artwork_title: artwork.title, // Título de la obra de arte
     };
 
     // Enviar el correo
@@ -52,14 +54,14 @@ const PurchaseForm = ({ artwork }) => {
     setBuyerCity("");
     setBuyerCountry("");
     setBuyerPostalCode("");
-    setBuyerMessage(""); // Reiniciar el mensaje adicional
+    setBuyerMessage("");
     setQuantity(1);
-    setFormVisible(false); // Cerrar el formulario tras el envío
+    setFormVisible(false);
   };
 
   const toggleFormVisibility = () => {
     setFormVisible(!isFormVisible);
-    setMessageSent(false); // Reiniciar el estado del mensaje al cerrar el formulario
+    setMessageSent(false);
   };
 
   return (
@@ -153,7 +155,7 @@ const PurchaseForm = ({ artwork }) => {
               value={buyerMessage}
               onChange={(e) => setBuyerMessage(e.target.value)}
               className="border p-2 w-full"
-              rows="4" // Ajusta el número de filas según sea necesario
+              rows="4"
             />
           </div>
           <button
