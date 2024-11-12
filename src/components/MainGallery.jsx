@@ -9,6 +9,9 @@ const MainGallery = () => {
     navigate(`/artwork/${id}`);
   };
 
+  // Reordena las obras para que el último elemento aparezca primero
+  const reversedArtworks = [...artworks].reverse();
+
   return (
     <div>
       <h1 className="text-center text-2xl sm:text-4xl font-bold text-[#13212e] mt-5 ">
@@ -18,19 +21,18 @@ const MainGallery = () => {
         Click on the images for more details and prices
       </h2>
       <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
-        {artworks.map((artwork) => (
+        {reversedArtworks.map((artwork) => (
           <div
             key={artwork.id}
             className="shadow-xl m-5 md:mb-[40px] relative group"
           >
             <img
-              className="md:max-w-64 h-full w-full object-cover rounded-t-lg sm:rounded-lg cursor-pointer "
+              className="md:max-w-64 h-full w-full object-cover rounded-t-lg sm:rounded-lg cursor-pointer"
               src={artwork.images[0]}
               alt={artwork.title}
             />
-            {/* Condición para mostrar el mensaje de "Vendido" */}
             {artwork.sold && (
-              <div className="absolute top-2 left-2 bg-red-500  text-white text-sm font-bold px-4 py-4 rounded-lg">
+              <div className="absolute top-2 left-2 bg-red-500 text-white text-sm font-bold px-4 py-4 rounded-lg">
                 Sold out
               </div>
             )}
